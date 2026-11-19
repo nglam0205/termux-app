@@ -10,6 +10,12 @@
             app:summaryOn="@string/termux_terminal_view_terminal_margin_adjustment_on"
             app:title="@string/termux_terminal_view_terminal_margin_adjustment_title" />
 
+        <SwitchPreferenceCompat
+            app:key="show_floating_session_switcher"
+            app:summaryOff="@string/termux_terminal_view_show_floating_session_switcher_off"
+            app:summaryOn="@string/termux_terminal_view_show_floating_session_switcher_on"
+            app:title="@string/termux_terminal_view_show_floating_session_switcher_title" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

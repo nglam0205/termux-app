@@ -342,6 +342,11 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
 
         unregisterTermuxActivityBroadcastReceiver();
         getDrawer().closeDrawers();
+
+        if (mLastToast != null) {
+            mLastToast.cancel();
+            mLastToast = null;
+        }
     }
 
     @Override
@@ -618,10 +623,24 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
     /** Show a toast and dismiss the last one if still visible. */
     public void showToast(String text, boolean longDuration) {
         if (text == null || text.isEmpty()) return;
-        if (mLastToast != null) mLastToast.cancel();
-        mLastToast = Toast.makeText(TermuxActivity.this, text, longDuration ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT);
-        mLastToast.setGravity(Gravity.TOP, 0, 0);
-        mLastToast.show();
+        if (isFinishing() || isDestroyed()) return;
+        if (!mIsVisible && !mIsOnResumeAfterOnCreate) return;
+
+        final Context applicationContext = getApplicationContext();
+        runOnUiThread(() -> {
+            if (isFinishing() || isDestroyed()) return;
+            if (!mIsVisible && !mIsOnResumeAfterOnCreate) return;
+
+            if (mLastToast != null) mLastToast.cancel();
+            Toast toast = Toast.makeText(applicationContext, text, longDuration ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP, 0, 0);
+            mLastToast = toast;
+            try {
+                toast.show();
+            } catch (RuntimeException e) {
+                Logger.logStackTraceWithMessage(LOG_TAG, "Failed to show toast: " + text, e);
+            }
+        });
     }
 
 

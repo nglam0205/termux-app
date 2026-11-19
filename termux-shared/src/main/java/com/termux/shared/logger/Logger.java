@@ -1,5 +1,6 @@
 package com.termux.shared.logger;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +15,7 @@ import com.termux.shared.data.DataUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -398,7 +400,25 @@ public class Logger {
     public static void showToast(final Context context, final String toastText, boolean longDuration) {
         if (context == null || DataUtils.isNullOrEmpty(toastText)) return;
 
-        new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(context, toastText, longDuration ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT).show());
+        final WeakReference<Activity> activityReference = context instanceof Activity ? new WeakReference<>((Activity) context) : null;
+        if (activityReference != null && !isActivityUsable(activityReference.get())) return;
+
+        Context applicationContext = context.getApplicationContext();
+        final Context toastContext = applicationContext != null ? applicationContext : context;
+
+        new Handler(Looper.getMainLooper()).post(() -> {
+            if (activityReference != null && !isActivityUsable(activityReference.get())) return;
+
+            try {
+                Toast.makeText(toastContext, toastText, longDuration ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT).show();
+            } catch (RuntimeException e) {
+                logStackTraceWithMessage(DEFAULT_LOG_TAG, "Failed to show toast: " + toastText, e);
+            }
+        });
+    }
+
+    private static boolean isActivityUsable(Activity activity) {
+        return activity != null && !activity.isFinishing() && !activity.isDestroyed();
     }
 
 

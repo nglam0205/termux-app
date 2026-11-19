@@ -294,7 +294,7 @@ public final class KeyHandler {
                 if (numLockOn) {
                     return keypadApplication ? transformForModifiers("\033O", keyMode, 's') : "3";
                 } else {
-                    // PGDN
+                    // Page Down
                     return "\033[6~";
                 }
             case KEYCODE_NUMPAD_4:
@@ -331,7 +331,7 @@ public final class KeyHandler {
                 if (numLockOn) {
                     return keypadApplication ? transformForModifiers("\033O", keyMode, 'y') : "9";
                 } else {
-                    // PGUP
+                    // Page Up
                     return "\033[5~";
                 }
             case KEYCODE_NUMPAD_EQUALS:

@@ -12,8 +12,7 @@ public class ExtraKeysConstants {
     /** Defines the repetitive keys that can be passed to {@link ExtraKeysView#setRepetitiveKeys(List)}. */
     public static List<String> PRIMARY_REPETITIVE_KEYS = Arrays.asList(
         "UP", "DOWN", "LEFT", "RIGHT",
-        "BKSP", "DEL",
-        "PGUP", "PGDN");
+        "BKSP", "DEL");
 
 
 
@@ -24,8 +23,6 @@ public class ExtraKeysConstants {
         put("TAB", KeyEvent.KEYCODE_TAB);
         put("HOME", KeyEvent.KEYCODE_MOVE_HOME);
         put("END", KeyEvent.KEYCODE_MOVE_END);
-        put("PGUP", KeyEvent.KEYCODE_PAGE_UP);
-        put("PGDN", KeyEvent.KEYCODE_PAGE_DOWN);
         put("INS", KeyEvent.KEYCODE_INSERT);
         put("DEL", KeyEvent.KEYCODE_FORWARD_DEL);
         put("BKSP", KeyEvent.KEYCODE_DEL);
@@ -97,12 +94,10 @@ public class ExtraKeysConstants {
         }};
 
         public static final ExtraKeyDisplayMap LESS_KNOWN_CHARACTERS_DISPLAY = new ExtraKeyDisplayMap() {{
-            // https://en.wikipedia.org/wiki/{Home_key, End_key, Page_Up_and_Page_Down_keys}
+            // https://en.wikipedia.org/wiki/{Home_key, End_key}
             // home key can mean "goto the beginning of line" or "goto first page" depending on context, hence the diagonal
             put("HOME", "⇱"); // from IEC 9995 // U+21F1 ⇱ NORTH WEST ARROW TO CORNER
             put("END", "⇲"); // from IEC 9995 // ⇲ // U+21F2 ⇲ SOUTH EAST ARROW TO CORNER
-            put("PGUP", "⇑"); // no ISO character exists, U+21D1 ⇑ UPWARDS DOUBLE ARROW will do the trick
-            put("PGDN", "⇓"); // no ISO character exists, U+21D3 ⇓ DOWNWARDS DOUBLE ARROW will do the trick
         }};
 
         public static final ExtraKeyDisplayMap ARROW_TRIANGLE_VARIATION_DISPLAY = new ExtraKeyDisplayMap() {{
@@ -188,17 +183,8 @@ public class ExtraKeysConstants {
         put("DN", "DOWN");
         // put("UP", "UP"); well, "UP" is already two letters
 
-        put("PAGEUP", "PGUP");
-        put("PAGE_UP", "PGUP");
-        put("PAGE UP", "PGUP");
-        put("PAGE-UP", "PGUP");
-
         // no alias for HOME
         // no alias for END
-
-        put("PAGEDOWN", "PGDN");
-        put("PAGE_DOWN", "PGDN");
-        put("PAGE-DOWN", "PGDN");
 
         put("DELETE", "DEL");
         put("BACKSPACE", "BKSP");

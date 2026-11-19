@@ -84,6 +84,29 @@ public class TermuxAppSharedPreferences extends AppSharedPreferences {
 
 
 
+    public boolean isFloatingSessionSwitcherEnabled() {
+        return SharedPreferenceUtils.getBoolean(mSharedPreferences, TERMUX_APP.KEY_SHOW_FLOATING_SESSION_SWITCHER, TERMUX_APP.DEFAULT_VALUE_SHOW_FLOATING_SESSION_SWITCHER);
+    }
+
+    public void setFloatingSessionSwitcherEnabled(boolean value) {
+        SharedPreferenceUtils.setBoolean(mSharedPreferences, TERMUX_APP.KEY_SHOW_FLOATING_SESSION_SWITCHER, value, false);
+    }
+
+    public float getFloatingSessionSwitcherOffsetX() {
+        return SharedPreferenceUtils.getFloat(mSharedPreferences, TERMUX_APP.KEY_FLOATING_SESSION_SWITCHER_OFFSET_X, 0f);
+    }
+
+    public float getFloatingSessionSwitcherOffsetY() {
+        return SharedPreferenceUtils.getFloat(mSharedPreferences, TERMUX_APP.KEY_FLOATING_SESSION_SWITCHER_OFFSET_Y, 0f);
+    }
+
+    public void setFloatingSessionSwitcherOffset(float offsetX, float offsetY) {
+        SharedPreferenceUtils.setFloat(mSharedPreferences, TERMUX_APP.KEY_FLOATING_SESSION_SWITCHER_OFFSET_X, offsetX, false);
+        SharedPreferenceUtils.setFloat(mSharedPreferences, TERMUX_APP.KEY_FLOATING_SESSION_SWITCHER_OFFSET_Y, offsetY, false);
+    }
+
+
+
     public boolean isTerminalMarginAdjustmentEnabled() {
         return SharedPreferenceUtils.getBoolean(mSharedPreferences, TERMUX_APP.KEY_TERMINAL_MARGIN_ADJUSTMENT, TERMUX_APP.DEFAULT_TERMINAL_MARGIN_ADJUSTMENT);
     }

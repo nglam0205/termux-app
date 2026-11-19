@@ -45,8 +45,8 @@ import org.json.JSONObject;
  * [[ESC, TAB, CTRL, ALT, {key: '-', popup: '|'}, DOWN, UP]]
  *
  * # 2 row:
- * [['ESC','/',{key: '-', popup: '|'},'HOME','UP','END','PGUP'],
- * ['TAB','CTRL','ALT','LEFT','DOWN','RIGHT','PGDN']]
+ * [['ESC','/',{key: '-', popup: '|'},'HOME','UP','END'],
+ * ['TAB','CTRL','ALT','LEFT','DOWN','RIGHT']]
  *
  * # Advance:
  * [[
@@ -55,8 +55,6 @@ import org.json.JSONObject;
  *   {key: ALT, popup: {macro: "CTRL f TAB", display: "tmux →"}},
  *   {key: TAB, popup: {macro: "ALT a", display: A-a}},
  *   {key: LEFT, popup: HOME},
- *   {key: DOWN, popup: PGDN},
- *   {key: UP, popup: PGUP},
  *   {key: RIGHT, popup: END},
  *   {macro: "ALT j", display: A-j, popup: {macro: "ALT g", display: A-g}},
  *   {key: KEYBOARD, popup: {macro: "CTRL d", display: exit}}

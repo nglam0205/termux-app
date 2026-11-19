@@ -9,6 +9,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 import com.termux.R;
+import com.termux.app.TermuxActivity;
 import com.termux.shared.termux.settings.preferences.TermuxAppSharedPreferences;
 
 @Keep
@@ -57,6 +58,10 @@ class TerminalViewPreferencesDataStore extends PreferenceDataStore {
             case "terminal_margin_adjustment":
                     mPreferences.setTerminalMarginAdjustment(value);
                 break;
+            case "show_floating_session_switcher":
+                    mPreferences.setFloatingSessionSwitcherEnabled(value);
+                    TermuxActivity.updateTermuxActivityStyling(mContext, false);
+                break;
             default:
                 break;
         }
@@ -69,6 +74,8 @@ class TerminalViewPreferencesDataStore extends PreferenceDataStore {
         switch (key) {
             case "terminal_margin_adjustment":
                 return mPreferences.isTerminalMarginAdjustmentEnabled();
+            case "show_floating_session_switcher":
+                return mPreferences.isFloatingSessionSwitcherEnabled();
             default:
                 return false;
         }

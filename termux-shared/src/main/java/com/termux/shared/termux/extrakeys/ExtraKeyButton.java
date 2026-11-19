@@ -28,7 +28,7 @@ public class ExtraKeyButton {
 
     /**
      * The key that will be sent to the terminal, either a control character, like defined in
-     * {@link ExtraKeysConstants#PRIMARY_KEY_CODES_FOR_STRINGS} (LEFT, RIGHT, PGUP...) or some text.
+     * {@link ExtraKeysConstants#PRIMARY_KEY_CODES_FOR_STRINGS} (LEFT, RIGHT, HOME...) or some text.
      */
     private final String key;
 
